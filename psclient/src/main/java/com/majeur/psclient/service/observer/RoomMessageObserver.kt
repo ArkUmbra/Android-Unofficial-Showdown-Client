@@ -144,11 +144,11 @@ abstract class RoomMessageObserver<C : RoomMessageObserver.UiCallbacks>(service:
     private fun getHashColor(username: String) = _usernameColorCache.getOrPut(username) { Utils.hashColor(username.toId()) }
 
     private fun printUserRelatedMessage(message: String) {
-        message.italic().color(-0xbdbdbe).small().also { printMessage(it) }
+        message.italic().small().also { onPrintTextUserRelated(it) }
     }
 
     protected fun printErrorMessage(message: String) {
-        message.bold().color(Color.RED).also { printMessage(it) }
+        message.bold().also { onPrintTextError(it) }
     }
 
     protected open fun printMessage(text: CharSequence) = onPrintText(text)
@@ -159,6 +159,9 @@ abstract class RoomMessageObserver<C : RoomMessageObserver.UiCallbacks>(service:
     protected open fun onRoomTitleChanged(title: String) = uiCallbacks?.onRoomTitleChanged(title)
     protected open fun onUpdateUsers(users: List<String>) = uiCallbacks?.onUpdateUsers(users)
     protected open fun onPrintText(text: CharSequence) = uiCallbacks?.onPrintText(text)
+    protected open fun onPrintTextInfo(text: CharSequence) = uiCallbacks?.onPrintTextInfo(text)
+    protected open fun onPrintTextError(text: CharSequence) = uiCallbacks?.onPrintTextError(text)
+    protected open fun onPrintTextUserRelated(text: CharSequence) = uiCallbacks?.onPrintTextUserRelated(text)
     protected open fun onPrintHtml(html: String) = uiCallbacks?.onPrintHtml(html)
     protected open fun onRoomDeInit() = uiCallbacks?.onRoomDeInit()
 
@@ -167,6 +170,9 @@ abstract class RoomMessageObserver<C : RoomMessageObserver.UiCallbacks>(service:
         fun onRoomTitleChanged(title: String)
         fun onUpdateUsers(users: List<String>)
         fun onPrintText(text: CharSequence)
+        fun onPrintTextInfo(text: CharSequence)
+        fun onPrintTextError(text: CharSequence)
+        fun onPrintTextUserRelated(text: CharSequence)
         fun onPrintHtml(html: String)
         fun onRoomDeInit()
     }

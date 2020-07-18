@@ -3,6 +3,7 @@ package com.majeur.psclient.ui
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.DialogInterface
+import android.content.res.Resources
 import android.graphics.PorterDuff
 import android.graphics.drawable.BitmapDrawable
 import android.os.Bundle
@@ -743,6 +744,18 @@ class BattleFragment : BaseFragment(), BattleRoomMessageObserver.UiCallbacks {
         binding.battleLog.append(text)
         notifyNewMessageReceived()
         if (fullScrolled) postFullScroll()
+    }
+
+    override fun onPrintTextInfo(text: CharSequence) {
+        onPrintText(text.color(resources.getColor(R.color.roomMsgLevelInfo)));
+    }
+
+    override fun onPrintTextError(text: CharSequence) {
+        onPrintText(text.color(resources.getColor(R.color.roomMsgLevelError)));
+    }
+
+    override fun onPrintTextUserRelated(text: CharSequence) {
+        onPrintText(text.color(resources.getColor(R.color.roomMsgLevelUser)));
     }
 
     override fun onPrintBattleMessage(text: CharSequence) {

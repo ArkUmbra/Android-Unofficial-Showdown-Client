@@ -794,7 +794,7 @@ class BattleRoomMessageObserver(service: ShowdownService)
 
     private fun printInactiveText(text: String?) {
         if (text == null) return
-        printMessage(text.small().italic().color(-0x750000))
+        onPrintTextInfo(text.small().italic())
     }
 
     override fun printMessage(text: CharSequence) {

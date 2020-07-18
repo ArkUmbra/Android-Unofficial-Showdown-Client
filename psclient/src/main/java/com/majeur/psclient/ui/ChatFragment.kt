@@ -20,6 +20,7 @@ import com.majeur.psclient.service.ShowdownService
 import com.majeur.psclient.service.observer.ChatRoomMessageObserver
 import com.majeur.psclient.util.Callback
 import com.majeur.psclient.util.Utils
+import com.majeur.psclient.util.color
 import com.majeur.psclient.util.html.Html
 import com.majeur.psclient.util.toId
 
@@ -171,6 +172,18 @@ class ChatFragment : BaseFragment(), ChatRoomMessageObserver.UiCallbacks {
         binding.chatLog.append(text)
         notifyNewMessageReceived()
         if (fullScrolled) postFullScroll()
+    }
+
+    override fun onPrintTextInfo(text: CharSequence) {
+        onPrintText(text.color(resources.getColor(R.color.roomMsgLevelInfo)));
+    }
+
+    override fun onPrintTextError(text: CharSequence) {
+        onPrintText(text.color(resources.getColor(R.color.roomMsgLevelError)));
+    }
+
+    override fun onPrintTextUserRelated(text: CharSequence) {
+        onPrintText(text.color(resources.getColor(R.color.roomMsgLevelUser)));
     }
 
     override fun onPrintHtml(html: String) {

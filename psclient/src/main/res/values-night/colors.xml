@@ -9,5 +9,10 @@
     <color name="surfaceBackground">#212121</color>
     <color name="onSurfaceBackground">#ffffff</color>
 
+    <color name="error">#FC6A03</color>
     <color name="battle_overlay">#C6000000</color>
+
+    <color name="roomMsgLevelInfo">#EC9706</color>
+    <color name="roomMsgLevelError">#BC560D</color>
+    <color name="roomMsgLevelUser">#0A8CBF</color>
 </resources>
